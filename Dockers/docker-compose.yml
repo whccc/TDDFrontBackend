@@ -1,0 +1,28 @@
+version: "3"
+services:
+  #Frontend React development
+  TaskReactApp:
+    container_name: TaskReactApp
+    image: taskreactapp
+    build:
+      context: .
+      dockerfile: ./Frontend/Dockerfile
+    environment:
+      - REACT_APP=1234
+    volumes:
+      - ../TDDFrontend:/var/www/
+    command: bash -c "npm install && npm install --production && npm start"
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      net4:
+        ipv4_address: 192.168.1.56
+#Networks
+networks:
+  net4:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
