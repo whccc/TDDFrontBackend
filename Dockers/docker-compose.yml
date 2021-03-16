@@ -10,7 +10,7 @@ services:
     environment:
       - REACT_APP=1234
     volumes:
-      - ../TDDFrontend:/var/www/
+      - ../TDDFrontendReact:/var/www/
     command: bash -c "npm install && npm install --production && npm start"
     restart: unless-stopped
     ports:
@@ -18,6 +18,22 @@ services:
     networks:
       net4:
         ipv4_address: 192.168.1.56
+  #Base de datos Postgres
+  TDDDBPosgres:
+    container_name: tdddbpostgre
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=tddtask
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=TDDtasks
+    ports:
+      - 3001:5432
+    volumes:
+      - ../data_pg:/var/lib/postgresql/data
+    networks:
+      net4:
+        ipv4_address: 192.168.1.57
 #Networks
 networks:
   net4:
