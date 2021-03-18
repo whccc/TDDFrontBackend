@@ -1,0 +1,9 @@
+{
+  "extends": "./node_modules/adonis-preset-ts/tsconfig.json",
+  "compilerOptions": {
+    "types": ["@adonisjs/core"],
+    "paths": {
+      "App/*": ["./app/*"]
+    }
+  }
+}
