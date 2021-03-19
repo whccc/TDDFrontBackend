@@ -3,7 +3,8 @@
   "compilerOptions": {
     "types": ["@adonisjs/core"],
     "paths": {
-      "App/*": ["./app/*"]
+      "App/*": ["./app/*"],
+      "Contracts/*": ["./contracts/*"]
     }
   }
 }
