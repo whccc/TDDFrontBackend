@@ -17,7 +17,22 @@ services:
       - 3000:3000
     networks:
       net4:
-        ipv4_address: 192.168.1.56
+        ipv4_address: 192.168.1.57
+  #Backend Adonis js
+  ApiAdonis:
+    container_name: ApiAdonis
+    image: apiadonis
+    build:
+      context: .
+      dockerfile: ./Backend/Dockerfile
+    command: bash -c "npm install && npm install --production && npm run dev"
+    volumes:
+      - ../TDDBackendAdonis/api:/var/www/
+    ports:
+      - 4001:4001
+    networks:
+      net4:
+        ipv4_address: 192.168.1.58
   #Base de datos Postgres
   TDDDBPosgres:
     container_name: tdddbpostgre
@@ -33,7 +48,7 @@ services:
       - ../data_pg:/var/lib/postgresql/data
     networks:
       net4:
-        ipv4_address: 192.168.1.57
+        ipv4_address: 192.168.1.59
 #Networks
 networks:
   net4:
