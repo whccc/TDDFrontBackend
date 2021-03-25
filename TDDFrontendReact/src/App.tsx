@@ -4,6 +4,8 @@ import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 
+require('dotenv').config();
+
 function App() {
   return (
     <Router>

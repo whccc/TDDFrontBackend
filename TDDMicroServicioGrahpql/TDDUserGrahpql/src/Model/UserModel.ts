@@ -20,6 +20,7 @@ class ClsUserModel {
       await DBConnection.ConnectionDBPostgres();
       // Query
       await DBConnection.getConnectionDB.query(Query, Values);
+
       // Close connection
       await DBConnection.CloseConnection();
     } catch (e) {
@@ -36,6 +37,24 @@ class ClsUserModel {
       const Query = 'select * from tbluser';
 
       const Data = await DBConnection.getConnectionDB.query(Query);
+      return Data.rows;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  // VALIDATE LOGIN USER
+  ValidateLoginUser = async ({ struser, strpassword }: { struser: string; strpassword: String }) => {
+    try {
+      const DBConnection = new ClsDBPostgres();
+
+      await DBConnection.ConnectionDBPostgres();
+
+      const Query = `SELECT *
+      FROM public.tbluser where tbluser.struser=$1  and tbluser.strpassword=$2`;
+      const Values = [struser, strpassword];
+      const Data = await DBConnection.getConnectionDB.query(Query, Values);
+
       return Data.rows;
     } catch (e) {
       throw new Error(e);

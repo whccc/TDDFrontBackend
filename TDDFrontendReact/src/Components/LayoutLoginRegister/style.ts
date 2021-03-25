@@ -46,7 +46,12 @@ export const ContainerDataForm = styled.div`
     }
   }
 `;
-export const ContainerChildren = styled.div``;
+export const ContainerChildren = styled.div`
+  @media (min-width: 1000px) {
+    overflow: auto;
+    max-height: 480px;
+  }
+`;
 export const ContainerNavigationForm = styled.div<INavigation>`
   text-align: right;
   & a {

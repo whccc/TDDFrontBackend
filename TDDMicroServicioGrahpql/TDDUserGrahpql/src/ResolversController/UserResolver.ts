@@ -9,21 +9,35 @@ class UserResolver {
   async createUser(@Arg('DataUser', () => UserInput) DataUser: UserInput) {
     // Create user
     try {
+      console.log(DataUser);
       const UserMD = new ClsUserModel();
       await UserMD.createUser(DataUser);
+
       return true;
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  @Query(() => [UserEntity])
+  @Query(() => [Boolean])
   async getUsers() {
     try {
       const UserMD = new ClsUserModel();
       const Data = await UserMD.getUser();
       return Data;
     } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  @Query(() => Boolean)
+  async ValidateUserLogin(@Arg('DataUser', () => UserInput) DataUser: UserInput) {
+    try {
+      const UserMD = new ClsUserModel();
+      const Data = await UserMD.ValidateLoginUser(DataUser);
+      return Data.length !== 0;
+    } catch (e) {
+      console.log(e);
       throw new Error(e);
     }
   }
