@@ -13,7 +13,7 @@ const HomePage = () => (
         <CPModalTask />
       </div>
       <ContainerListTask>
-        <CPTask /> <CPTask />
+        <CPTask />
       </ContainerListTask>
     </ContainerTasks>
   </Container>
